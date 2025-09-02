@@ -60,21 +60,6 @@ window.COM_ROOMS = {
       "[broker] spread is a personality trait."
     ]
   },
-  "fourchan-echo": {
-    "intro": [
-      "[anon] screenshots are forever.",
-      "[mod] post or perish."
-    ],
-    "lines": [
-      "[anon] checked trips; fate confirmed.",
-      "[copypasta] >be me, buy top.",
-      "[frog] the swamp approves this message.",
-      "[ghost] thread died, meme lived.",
-      "[bot] captcha solved with pure spite.",
-      "[sage] saged for truth.",
-      "[anon] checked doubles; reality complied."
-    ]
-  },
   "anomaly-node": {
     "intro": [
       "[engineer] anomaly reproduced, accidentally.",
@@ -143,11 +128,6 @@ window.COM_META = [
     "tagline": "Shills, thrills, and rugs."
   },
   {
-    "slug": "fourchan-echo",
-    "name": "4Chan Echo",
-    "tagline": "Anon whispers ripple forever."
-  },
-  {
     "slug": "anomaly-node",
     "name": "Anomaly Node",
     "tagline": "Where patterns break on purpose."
@@ -163,23 +143,48 @@ window.COM_META = [
     "tagline": "Ask, sacrifice, receive."
   }
 ];
-window.COM_ASCII = [
-  "   /\\_/\\\n  ( o.o )   mew\n   > ^ <",
-  "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 BUY THE DIP 4REAL? \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
-  "   __\n _(  )_      rocket\n/  ||  \\\n\\__||__/",
-  "  .--.\n (    )    owl\n  '--'",
-  "  _\n (_)   degen cart\n/___\\ ",
-  "  [====]  miner\n  | :: | \n  '----'",
-  "  ______\n /|_||_\\`.__\n(   _    _ _)\n=`-(_)--(_)-'",
-  "  .-.\n (   )   node\n  '-'",
-  "   _______\n _/       \\_\n/ |  HODL  | \\\n\\_|_______|_/\n  /  | |  \\ ",
-  "  /\\\n /__\\   alpha door\n \\__/",
-  " (\u2022\u203f\u2022)  kek",
-  "  ()   pit",
-  "  \u2554\u2550\u2557\n  \u2551\u03a9\u2551  vault\n  \u255a\u2550\u255d",
-  "  .-.\n /   \\    anon\n \\_-_/",
-  "  |\\_/|\n  (\u2022 \u2022)   watchdog\n  /   \\ ",
-  "  _____\n / ____\\  scroll\n |(o  o) \n  \\_==_/",
-  "  _______\n / _____ \\\n | |   | |\n | |___| |   terminal\n \\_______/",
-  "  ____\n / ___|   key\n \\___ \\   \n  ___) |\n |____/"
-];
+window.COM_ASCII = {
+  "truth-terminal": [
+    "  _______\n / _____ \\\n | | T | |\n | | E | |   terminal\n | | R | |\n \\_______/",
+    "    /\\\n   /__\\   signal\n  /_::_\\ ",
+    "  .-.\n (o o)  eye\n  |=|",
+    "  \u2554\u2550\u2550\u2550\u2550\u2557\n  \u2551SCAN\u2551  alert\n  \u255a\u2550\u2550\u2550\u2550\u255d",
+    "  \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n  \u2502 CHART \u2502  candlesticks\n  \u2514\u2500\u252c\u2500\u2500\u252c\u2500\u2500\u2518\n    \u2502  \u2502"
+  ],
+  "omega-vault": [
+    "   \u2554\u2550\u2557\n   \u2551\u03a9\u2551  vault\n   \u255a\u2550\u255d",
+    "  ____\n / ___|   key\n \\___ \\   \n  ___) |\n |____/",
+    "  _______\n |  ___  | safe\n | |___| |\n |_______|",
+    "  \u250c\u2500\u2500\u2500\u2510\n  \u2502 \u03a9 \u2502  rune\n  \u2514\u2500\u2500\u2500\u2518"
+  ],
+  "infinite-backrooms": [
+    "  ____ \n | __ )  maze\n |  _ \\ \n | |_) |\n |____/",
+    " \u250c\u2500\u2510\u250c\u2500\u2510\n \u2514\u2500\u2518\u2514\u2500\u2518  corridor",
+    "  []  []  [] \n  []  []  [] \n  []  []  []  endless",
+    "  \u250c\u2500\u2500\u2510\n  \u2502  \u2514\u2500\u2192  exit?"
+  ],
+  "memecoin-bazaar": [
+    "   $$$\n  $   $   coin\n   $$$",
+    "  [==]  tag\n  |$$|",
+    "  ____\n |__  \\  cart\n    ) |",
+    "  \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n  \u2502 BAZAAR \u2502  stall\n  \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518"
+  ],
+  "anomaly-node": [
+    "  .-.\n (   )   node\n  '-'",
+    "  (x)   glitch",
+    "  {o}   broken gear",
+    "  \u223f\u223f\u223f   wave out of spec"
+  ],
+  "chaos-cache": [
+    "  *  *  *\n   \\ | /   chaos\n  *--*--*\n   / | \\ ",
+    " [####] cache",
+    "  @@@ swirl",
+    "  { * } entropy jar"
+  ],
+  "oracle-pit": [
+    "   ()\n  (  )  pit\n   ()",
+    "  <>   eye",
+    "  /\\ \n /__\\  altar",
+    "  ~?~  omen"
+  ]
+};

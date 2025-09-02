@@ -1,7 +1,7 @@
 
 (function(){
   const ROOM_DATA = window.COM_ROOMS || {};
-  const ASCII = window.COM_ASCII || [];
+  const ROOM_ASCII = window.COM_ASCII || {};
 
   function write(termEl, text, cls){
     const p = document.createElement('p');
@@ -9,18 +9,18 @@
     if(cls==="art"){ p.textContent = text; } else { p.innerHTML = text; }
     termEl.appendChild(p);
   }
-
   function sample(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 
+  // Render a long transcript instantly; room-specific ASCII every 3 lines
   function renderInstant(termEl, slug){
     const data = ROOM_DATA[slug] || {intro:["[sys] booting…"], lines:["[ai] default room lines."]};
+    const ascii = ROOM_ASCII[slug] || ["(*)"];
     const transcript = [];
-    // more lines + more ASCII: every 3-4 lines add ASCII
-    const total = 96; // much longer
     data.intro.forEach(l => transcript.push(l));
+    const total = 110;
     for(let i=0;i<total;i++){
-      if(i>0 && i%4===0){
-        transcript.push("ART::"+sample(ASCII));
+      if(i>0 && i%3===0){
+        transcript.push("ART::"+sample(ascii));
       }else{
         transcript.push(sample(data.lines));
       }
