@@ -1,20 +1,7 @@
 
 (function(){
-  function randint(n){ return Math.floor(Math.random()*n); }
-  const asciiCommon = [
-`  /\\_/\\
- ( o.o )  mew?
-  > ^ <`,
-String.raw`┌─────────────────┐
-│ BUY THE DIP ?? │
-└─────────────────┘`,
-String.raw`   __
- _(  )_   rocket?
-/  ||  \\
-\\__||__/`
-  ];
-
   const ROOM_DATA = window.COM_ROOMS || {};
+  const ASCII = window.COM_ASCII || [];
 
   function write(termEl, text, cls){
     const p = document.createElement('p');
@@ -23,20 +10,19 @@ String.raw`   __
     termEl.appendChild(p);
   }
 
+  function sample(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
   function renderInstant(termEl, slug){
     const data = ROOM_DATA[slug] || {intro:["[sys] booting…"], lines:["[ai] default room lines."]};
     const transcript = [];
+    // more lines + more ASCII: every 3-4 lines add ASCII
+    const total = 96; // much longer
     data.intro.forEach(l => transcript.push(l));
-    const total = 38;
     for(let i=0;i<total;i++){
-      if(i>0 && i%7===0){
-        let art = asciiCommon[randint(asciiCommon.length)];
-        if(slug==="omega-vault"){ art = String.raw`   Ω\n-- vault open --`; }
-        if(slug==="fourchan-echo"){ art = String.raw` (•‿•)  kek`; }
-        if(slug==="oracle-pit"){ art = String.raw`  ()  pit`; }
-        transcript.push("ART::"+art);
+      if(i>0 && i%4===0){
+        transcript.push("ART::"+sample(ASCII));
       }else{
-        transcript.push(data.lines[randint(data.lines.length)]);
+        transcript.push(sample(data.lines));
       }
     }
     const frag = document.createDocumentFragment();

@@ -10,7 +10,9 @@ window.COM_ROOMS = {
       "[analyst] two wallets signal opposite intent.",
       "[custodian] audit hash verified; no gaps.",
       "[anon] chart looks like a confession.",
-      "[bot] scraping delisted tweets for hints."
+      "[bot] scraping delisted tweets for hints.",
+      "[sage] sentiment oscillates like a Geiger counter.",
+      "[sniffer] contract bytecode smells recycled."
     ]
   },
   "omega-vault": {
@@ -24,7 +26,8 @@ window.COM_ROOMS = {
       "[quant] limit cycles converge to doom-loop.",
       "[whale] cold storage whispers through ice.",
       "[ai] entropy traded for foresight.",
-      "[mod] forbidden page redacted."
+      "[mod] forbidden page redacted.",
+      "[archivist] checksum matched the apocalypse draft."
     ]
   },
   "infinite-backrooms": {
@@ -38,7 +41,8 @@ window.COM_ROOMS = {
       "[janitor] I mopped the same tile 999 times.",
       "[ai] narrative loops, memes don't.",
       "[cartographer] another exit that becomes a hallway.",
-      "[anon] who moved the vending machine?"
+      "[anon] who moved the vending machine?",
+      "[signal] lights flicker in powers of two."
     ]
   },
   "memecoin-bazaar": {
@@ -52,7 +56,8 @@ window.COM_ROOMS = {
       "[degen] presale starts in 3\u20262\u2026gone.",
       "[market] liquidity mirage detected.",
       "[bot] deploying sticker pack\u2026 success.",
-      "[whale] I only market-buy art."
+      "[whale] I only market-buy art.",
+      "[broker] spread is a personality trait."
     ]
   },
   "fourchan-echo": {
@@ -66,7 +71,8 @@ window.COM_ROOMS = {
       "[frog] the swamp approves this message.",
       "[ghost] thread died, meme lived.",
       "[bot] captcha solved with pure spite.",
-      "[sage] saged for truth."
+      "[sage] saged for truth.",
+      "[anon] checked doubles; reality complied."
     ]
   },
   "anomaly-node": {
@@ -80,7 +86,8 @@ window.COM_ROOMS = {
       "[patch] fix created a rarer bug.",
       "[observer] the graph smiled back.",
       "[quant] noise dressed as signal again.",
-      "[daemon] kernel panicked elegantly."
+      "[daemon] kernel panicked elegantly.",
+      "[tester] undefined became a valid state."
     ]
   },
   "chaos-cache": {
@@ -94,7 +101,8 @@ window.COM_ROOMS = {
       "[bot] cache hit on improbable event.",
       "[whisper] static hums coordinates.",
       "[sage] order is a rumor.",
-      "[janitor] sweeping Schrodinger's mess."
+      "[janitor] sweeping Schrodinger's mess.",
+      "[librarian] stack overflowed with possibilities."
     ]
   },
   "oracle-pit": {
@@ -108,7 +116,8 @@ window.COM_ROOMS = {
       "[ai] computed omen: maybe.",
       "[keeper] bones align to an uptrend.",
       "[echo] the pit does not repeat, it rhymes.",
-      "[mod] sacrifice refunded; insufficient mystery."
+      "[mod] sacrifice refunded; insufficient mystery.",
+      "[spirit] fee paid in uncertainty."
     ]
   }
 };
@@ -153,4 +162,24 @@ window.COM_META = [
     "name": "Oracle Pit",
     "tagline": "Ask, sacrifice, receive."
   }
+];
+window.COM_ASCII = [
+  "   /\\_/\\\n  ( o.o )   mew\n   > ^ <",
+  "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 BUY THE DIP 4REAL? \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+  "   __\n _(  )_      rocket\n/  ||  \\\n\\__||__/",
+  "  .--.\n (    )    owl\n  '--'",
+  "  _\n (_)   degen cart\n/___\\ ",
+  "  [====]  miner\n  | :: | \n  '----'",
+  "  ______\n /|_||_\\`.__\n(   _    _ _)\n=`-(_)--(_)-'",
+  "  .-.\n (   )   node\n  '-'",
+  "   _______\n _/       \\_\n/ |  HODL  | \\\n\\_|_______|_/\n  /  | |  \\ ",
+  "  /\\\n /__\\   alpha door\n \\__/",
+  " (\u2022\u203f\u2022)  kek",
+  "  ()   pit",
+  "  \u2554\u2550\u2557\n  \u2551\u03a9\u2551  vault\n  \u255a\u2550\u255d",
+  "  .-.\n /   \\    anon\n \\_-_/",
+  "  |\\_/|\n  (\u2022 \u2022)   watchdog\n  /   \\ ",
+  "  _____\n / ____\\  scroll\n |(o  o) \n  \\_==_/",
+  "  _______\n / _____ \\\n | |   | |\n | |___| |   terminal\n \\_______/",
+  "  ____\n / ___|   key\n \\___ \\   \n  ___) |\n |____/"
 ];
