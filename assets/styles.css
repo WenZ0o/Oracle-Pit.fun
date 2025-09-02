@@ -12,6 +12,5 @@ body{ margin:0; background:#0b0e10; color:var(--fg); font:16px/1.5 ui-monospace,
 .card h3{margin:6px 0}
 .term{ color:#cfe8d8; background:#070a0c; border:1px solid #11161d; border-radius:10px; padding:10px 12px; font-size:13px; min-height:220px; max-height:55vh; overflow:auto; white-space:pre-wrap; }
 .term .role{color:var(--accent2)}
-.term .art{ color:#9fe7bf }
+.term .art{ color:#9fe7bf; display:block; margin:8px 0; white-space:pre; }
 .small{font-size:12px; color:var(--muted)}
-.button{display:inline-block; padding:8px 12px; border-radius:6px; border:1px solid #1b2d23; background:#0b1410; color:#9fe7bf; text-decoration:none; cursor:pointer; margin-top:10px}

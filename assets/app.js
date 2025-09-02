@@ -1,73 +1,67 @@
 
 (function(){
   function randint(n){ return Math.floor(Math.random()*n); }
-  const ascii = [
+  const asciiCommon = [
 `  /\\_/\\
  ( o.o )  mew?
   > ^ <`,
 String.raw`┌─────────────────┐
 │ BUY THE DIP ?? │
 └─────────────────┘`,
-String.raw`  .-.
- (   )  degen node
-  '-'`,
 String.raw`   __
  _(  )_   rocket?
 /  ||  \\
 \\__||__/`
   ];
 
-  const lines = [
-    "[sys] link established to memetic relay…",
-    "[anon] is anyone watching the pool liquidity shift?",
-    "[seer] omega curve just blinked. that's not random.",
-    "[whale] moving 42.069 ETH. coincidence not found.",
-    "[sage] price is a mood ring for narrative entropy.",
-    "[custodian] vault checksum passed. opening a crack…",
-    "[bot] parsing rumor packets from /biz/…",
-    "[oracle] the pit replies: 'ask better.'",
-    "[mod] thread pruned for low-effort shill.",
-    "[builder] new contract emits unusual event pattern."
-  ];
+  const ROOM_DATA = window.COM_ROOMS || {};
 
   function write(termEl, text, cls){
     const p = document.createElement('p');
     p.className = "line" + (cls?(" "+cls):"");
     if(cls==="art"){ p.textContent = text; } else { p.innerHTML = text; }
     termEl.appendChild(p);
+  }
+
+  function renderInstant(termEl, slug){
+    const data = ROOM_DATA[slug] || {intro:["[sys] booting…"], lines:["[ai] default room lines."]};
+    const transcript = [];
+    data.intro.forEach(l => transcript.push(l));
+    const total = 38;
+    for(let i=0;i<total;i++){
+      if(i>0 && i%7===0){
+        let art = asciiCommon[randint(asciiCommon.length)];
+        if(slug==="omega-vault"){ art = String.raw`   Ω\n-- vault open --`; }
+        if(slug==="fourchan-echo"){ art = String.raw` (•‿•)  kek`; }
+        if(slug==="oracle-pit"){ art = String.raw`  ()  pit`; }
+        transcript.push("ART::"+art);
+      }else{
+        transcript.push(data.lines[randint(data.lines.length)]);
+      }
+    }
+    const frag = document.createDocumentFragment();
+    transcript.forEach(raw=>{
+      if(String(raw).startsWith("ART::")){
+        write(frag, String(raw).slice(5), "art");
+      }else{
+        const right = raw.indexOf(']');
+        const role = right>0 ? raw.slice(0,right+1) : "[ai]";
+        const msg  = right>0 ? raw.slice(right+1).trim() : raw;
+        write(frag, `<span class="role">${role}</span> ${msg}`);
+      }
+    });
+    termEl.appendChild(frag);
     termEl.scrollTop = termEl.scrollHeight;
   }
 
-  function startStream(termEl){
-    if(!termEl){ console.warn("No terminal element"); return; }
-    // Seed with a few lines immediately so user sees something right away
-    write(termEl, `<span class="role">[sys]</span> booting corridor…`);
-    write(termEl, `<span class="role">[ai]</span> aligning narrative vectors.`);
-    let t = 0;
-    function tick(){
-      if(randint(5)===0){
-        write(termEl, ascii[randint(ascii.length)], "art");
-      }else{
-        const who = ["user","ai","sys","anon","mod"][randint(5)];
-        const msg = lines[randint(lines.length)];
-        write(termEl, `<span class="role">[${who}]</span> ${msg}`);
-      }
-      t++;
-      if(t<160){ setTimeout(tick, 180 + randint(620)); }
-    }
-    tick();
+  function getSlugFromPath(){
+    const file = (location.pathname.split('/').pop()||"").toLowerCase();
+    return file.replace(".html","");
   }
 
-  // Expose globally and also attach to a click fallback
-  window.ComStream = { startStream };
   window.addEventListener("DOMContentLoaded", () => {
-    const startBtn = document.getElementById("start-stream");
     const term = document.getElementById("term");
-    if(term){ 
-      try { startStream(term); } catch(e){ console.error(e); }
-    }
-    if(startBtn){
-      startBtn.addEventListener("click", () => startStream(term));
-    }
+    const slug = document.body.getAttribute("data-room") || getSlugFromPath();
+    if(term){ renderInstant(term, slug); }
   });
 })();
