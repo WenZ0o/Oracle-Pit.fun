@@ -1,30 +1,20 @@
 
-// Conversation streamer with emergent ASCII art
 (function(){
   function randint(n){ return Math.floor(Math.random()*n); }
   const ascii = [
 `  /\\_/\\
  ( o.o )  mew?
   > ^ <`,
-`   .-.
-  (o o)  owl sees trends
-   |=|
-  __|__`,
-`   __
- _(  )_   rocket?
-/  ||  \\
-\\__||__/`,
 String.raw`┌─────────────────┐
 │ BUY THE DIP ?? │
 └─────────────────┘`,
-String.raw`   _______
- _/       \_
-/ |  HODL  | \
-\_|_______|_/
-  /  | |  \`,
 String.raw`  .-.
  (   )  degen node
-  '-'`
+  '-'`,
+String.raw`   __
+ _(  )_   rocket?
+/  ||  \\
+\\__||__/`
   ];
 
   const lines = [
@@ -40,25 +30,44 @@ String.raw`  .-.
     "[builder] new contract emits unusual event pattern."
   ];
 
+  function write(termEl, text, cls){
+    const p = document.createElement('p');
+    p.className = "line" + (cls?(" "+cls):"");
+    if(cls==="art"){ p.textContent = text; } else { p.innerHTML = text; }
+    termEl.appendChild(p);
+    termEl.scrollTop = termEl.scrollHeight;
+  }
+
   function startStream(termEl){
+    if(!termEl){ console.warn("No terminal element"); return; }
+    // Seed with a few lines immediately so user sees something right away
+    write(termEl, `<span class="role">[sys]</span> booting corridor…`);
+    write(termEl, `<span class="role">[ai]</span> aligning narrative vectors.`);
     let t = 0;
     function tick(){
-      const p = document.createElement('p');
-      p.className = "line";
       if(randint(5)===0){
-        p.classList.add('art');
-        p.textContent = ascii[randint(ascii.length)];
+        write(termEl, ascii[randint(ascii.length)], "art");
       }else{
         const who = ["user","ai","sys","anon","mod"][randint(5)];
         const msg = lines[randint(lines.length)];
-        p.innerHTML = `<span class="role">[${who}]</span> ${msg}`;
+        write(termEl, `<span class="role">[${who}]</span> ${msg}`);
       }
-      termEl.appendChild(p);
-      termEl.scrollTop = termEl.scrollHeight;
       t++;
-      if(t<140){ setTimeout(tick, 180 + randint(620)); }
+      if(t<160){ setTimeout(tick, 180 + randint(620)); }
     }
     tick();
   }
+
+  // Expose globally and also attach to a click fallback
   window.ComStream = { startStream };
+  window.addEventListener("DOMContentLoaded", () => {
+    const startBtn = document.getElementById("start-stream");
+    const term = document.getElementById("term");
+    if(term){ 
+      try { startStream(term); } catch(e){ console.error(e); }
+    }
+    if(startBtn){
+      startBtn.addEventListener("click", () => startStream(term));
+    }
+  });
 })();

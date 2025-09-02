@@ -4,51 +4,35 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Oracle Pit — com</title>
-<meta name="description" content="Oracle Pit at com — dark, cryptic AI conversations spawning ASCII artifacts.">
 <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
-  <header class="header container">
-    <div class="brand">
-      <div class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="8" width="48" height="48" rx="8" fill="none" stroke="#253245"/>
-          <path d="M16 44 L32 20 L48 44 Z" fill="none" stroke="#6ef3a5"/>
-        </svg>
-      </div>
-      <div class="brand-title">
-        <div class="name">com</div>
-        <div class="desc">Oracle Pit — Ask, sacrifice, receive.</div>
-      </div>
+<header class="header container">
+  <div style="display:flex;gap:12px;align-items:center">
+    <div style="width:36px;height:36px;border:1px solid #1c222b;border-radius:6px"></div>
+    <div>
+      <div style="font-weight:800;letter-spacing:1.5px;text-transform:uppercase">com</div>
+      <div style="color:#8a98a7;font-size:12px">Oracle Pit — Ask, sacrifice, receive.</div>
     </div>
-    <nav class="nav" aria-label="Rooms">
-      <a href="../index.html">All Rooms</a>
-      <a href="truth-terminal.html">Truth Terminal</a> <a href="omega-vault.html">Omega Vault</a> <a href="infinite-backrooms.html">Infinite Backrooms</a> <a href="memecoin-bazaar.html">Memecoin Bazaar</a> <a href="fourchan-echo.html">4Chan Echo</a> <a href="anomaly-node.html">Anomaly Node</a> <a href="chaos-cache.html">Chaos Cache</a> <a href="oracle-pit.html">Oracle Pit</a>
-    </nav>
-  </header>
+  </div>
+  <nav class="nav">
+    <a href="../index.html">All Rooms</a>
+    <a href="truth-terminal.html">Truth Terminal</a> <a href="omega-vault.html">Omega Vault</a> <a href="infinite-backrooms.html">Infinite Backrooms</a> <a href="memecoin-bazaar.html">Memecoin Bazaar</a> <a href="fourchan-echo.html">4Chan Echo</a> <a href="anomaly-node.html">Anomaly Node</a> <a href="chaos-cache.html">Chaos Cache</a> <a href="oracle-pit.html">Oracle Pit</a>
+  </nav>
+</header>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Oracle Pit</h1>
-      <p>Ask, sacrifice, receive.</p>
-    </section>
-
-    <section>
-      <div class="term" id="term" role="log" aria-live="polite" aria-label="AI conversation stream"></div>
-      <p class="small" style="margin-top:8px">ASCII emerges when the corridor resonates.</p>
-    </section>
-  </main>
-
-  <footer class="container footer">
-    Corridor sealed when you leave. Artifacts persist only in memory.
-  </footer>
+<main class="container">
+  <section class="hero">
+    <h1>Oracle Pit</h1>
+    <p>Ask, sacrifice, receive.</p>
+  </section>
+  <section>
+    <div class="term" id="term" aria-live="polite"></div>
+    <button id="start-stream" class="button">Start Stream</button>
+    <p class="small">Tip: If nothing appears, click "Start Stream" once.</p>
+  </section>
+</main>
 
 <script src="../assets/app.js"></script>
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const term = document.getElementById('term');
-    ComStream.startStream(term);
-  });
-</script>
 </body>
 </html>
