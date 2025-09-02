@@ -1,0 +1,1 @@
+console.log('AI backroom stream simulation placeholder');
