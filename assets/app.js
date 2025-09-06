@@ -10,37 +10,30 @@
     termEl.appendChild(p);
   }
   function sample(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-
-  // helper: sample without repeating last picked ASCII
-  function sampleAscii(ascii, last){
-    if(!ascii || ascii.length===0) return null;
-    let pick = sample(ascii);
-    if(ascii.length>1 && pick===last){
-      // try once more to avoid immediate repeat
-      pick = sample(ascii);
-    }
+  function sampleDistinct(arr, recent, windowSize){
+    if(!arr || arr.length===0) return null;
+    const candidates = arr.filter(x => !recent.includes(x));
+    const pick = (candidates.length>0 ? sample(candidates) : sample(arr));
+    recent.push(pick);
+    while(recent.length > windowSize){ recent.shift(); }
     return pick;
   }
-
-  // Render long transcript instantly; ASCII every 8 lines (less frequent)
   function renderInstant(termEl, slug){
     const data = ROOM_DATA[slug] || {intro:["[sys] booting…"], lines:["[ai] default room lines."]};
     const ascii = ROOM_ASCII[slug] || ["(*)"];
     const transcript = [];
     data.intro.forEach(l => transcript.push(l));
-
-    let lastAscii = null;
-    const total = 80; // long but not overwhelming
+    const total = 160, asciiEvery = 5;
+    const recentAscii=[], recentLines=[];
     for(let i=0;i<total;i++){
-      if(i>0 && i%8===0){ // ASCII frequency reduced
-        const art = sampleAscii(ascii, lastAscii);
-        lastAscii = art;
+      if(i>0 && i%asciiEvery===0){
+        const art = sampleDistinct(ascii, recentAscii, 5);
         transcript.push("ART::"+art);
       }else{
-        transcript.push(sample(data.lines));
+        const line = sampleDistinct(data.lines, recentLines, 8);
+        transcript.push(line);
       }
     }
-
     const frag = document.createDocumentFragment();
     transcript.forEach(raw=>{
       if(String(raw).startsWith("ART::")){
@@ -53,19 +46,11 @@
       }
     });
     termEl.appendChild(frag);
-
-    // Keep the log at TOP on load (do not scroll to bottom)
     termEl.scrollTop = 0;
   }
-
-  function getSlugFromPath(){
-    const file = (location.pathname.split('/').pop()||"").toLowerCase();
-    return file.replace(".html","");
-  }
-
   window.addEventListener("DOMContentLoaded", () => {
     const term = document.getElementById("term");
-    const slug = document.body.getAttribute("data-room") || getSlugFromPath();
+    const slug = document.body.getAttribute("data-room");
     if(term){ renderInstant(term, slug); }
   });
 })();

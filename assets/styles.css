@@ -10,7 +10,9 @@ body{ margin:0; background:#0b0e10; color:var(--fg); font:18px/1.6 ui-monospace,
 .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:16px}
 .card{padding:16px; border:1px solid #161c24; border-radius:10px; background:#0c1117; text-decoration:none; color:var(--fg)}
 .card h3{margin:6px 0}
-.term{ color:#cfe8d8; background:#070a0c; border:1px solid #11161d; border-radius:10px; padding:14px 16px; font-size:16px; min-height:360px; max-height:70vh; overflow:auto; white-space:pre-wrap; }
+.logo-box{width:48px;height:48px;display:flex;align-items:center;justify-content:center;border:1px solid #1b262f;border-radius:8px;background:#0b0f14;margin-right:8px}
+.header-left{display:flex;align-items:center;gap:12px}
+.term{ color:#cfe8d8; background:#070a0c; border:1px solid #11161d; border-radius:10px; padding:14px 16px; font-size:16px; min-height:420px; max-height:70vh; overflow:auto; white-space:pre-wrap; }
 .term .role{color:var(--accent2)}
 .term .art{ color:#9fe7bf; display:block; margin:10px 0; white-space:pre; }
 .small{font-size:13px; color:var(--muted)}
