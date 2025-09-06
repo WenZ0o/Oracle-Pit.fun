@@ -11,20 +11,36 @@
   }
   function sample(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 
-  // Render a long transcript instantly; room-specific ASCII every 3 lines
+  // helper: sample without repeating last picked ASCII
+  function sampleAscii(ascii, last){
+    if(!ascii || ascii.length===0) return null;
+    let pick = sample(ascii);
+    if(ascii.length>1 && pick===last){
+      // try once more to avoid immediate repeat
+      pick = sample(ascii);
+    }
+    return pick;
+  }
+
+  // Render long transcript instantly; ASCII every 8 lines (less frequent)
   function renderInstant(termEl, slug){
     const data = ROOM_DATA[slug] || {intro:["[sys] booting…"], lines:["[ai] default room lines."]};
     const ascii = ROOM_ASCII[slug] || ["(*)"];
     const transcript = [];
     data.intro.forEach(l => transcript.push(l));
-    const total = 110;
+
+    let lastAscii = null;
+    const total = 80; // long but not overwhelming
     for(let i=0;i<total;i++){
-      if(i>0 && i%3===0){
-        transcript.push("ART::"+sample(ascii));
+      if(i>0 && i%8===0){ // ASCII frequency reduced
+        const art = sampleAscii(ascii, lastAscii);
+        lastAscii = art;
+        transcript.push("ART::"+art);
       }else{
         transcript.push(sample(data.lines));
       }
     }
+
     const frag = document.createDocumentFragment();
     transcript.forEach(raw=>{
       if(String(raw).startsWith("ART::")){
@@ -37,7 +53,9 @@
       }
     });
     termEl.appendChild(frag);
-    termEl.scrollTop = termEl.scrollHeight;
+
+    // Keep the log at TOP on load (do not scroll to bottom)
+    termEl.scrollTop = 0;
   }
 
   function getSlugFromPath(){
