@@ -3,16 +3,16 @@
 *{box-sizing:border-box}
 body{ margin:0; background:#0b0e10; color:#d7e1e8; font:18px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 .container{max-width:1300px; margin:0 auto; padding:28px 24px}
-.header{display:flex; gap:16px; align-items:flex-start; justify-content:space-between; padding:14px 0; border-bottom:1px dashed #1a222c}
-.header-left{display:flex; gap:14px; align-items:flex-start}
-.logo-box{width:52px;height:52px;display:flex;align-items:center;justify-content:center;border:1px solid #1b262f;border-radius:8px;background:#0b0f14}
+.header{display:flex; gap:16px; align-items:center; justify-content:space-between; padding:14px 0; border-bottom:1px dashed #1a222c}
+.header-left{display:flex; gap:12px; align-items:center}
 .nav{display:flex; gap:10px; flex-wrap:wrap}
 .nav a{font-size:14px; padding:6px 9px; border:1px solid #161c24; border-radius:6px; background:#0b0f14; color:#d7e1e8; text-decoration:none}
-.banner{white-space:pre; font-size:12px; line-height:1.05; color:#9fe7bf; margin:0}
 .hero{margin:22px 0; padding:18px; border:1px solid #161c24; border-radius:10px; background:#0d1218}
 .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:16px}
 .card{padding:16px; border:1px solid #161c24; border-radius:10px; background:#0c1117; text-decoration:none; color:#d7e1e8}
 .card h3{margin:6px 0}
+.brand {display:flex; align-items:center; gap:10px}
+.brand img {height:38px}
 .term{ color:#cfe8d8; background:#070a0c; border:1px solid #11161d; border-radius:10px; padding:14px 16px; font-size:16px; min-height:420px; max-height:70vh; overflow:auto; white-space:pre-wrap; }
 .term .role{color:#a0c4ff}
 .term .art{ color:#9fe7bf; display:block; margin:10px 0; white-space:pre; }
