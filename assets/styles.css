@@ -12,7 +12,8 @@ body{ margin:0; background:#0b0e10; color:#d7e1e8; font:18px/1.6 ui-monospace, S
 .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:16px}
 .card{padding:16px; border:1px solid #161c24; border-radius:10px; background:#0c1117; text-decoration:none; color:#d7e1e8}
 .card h3{margin:6px 0}
-.term{ color:#e8fff3; background:#070a0c; border:1px solid #11161d; border-radius:10px; padding:14px 16px; font-size:16px; min-height:540px; max-height:75vh; overflow:auto; white-space:pre-wrap; }
+.card svg{height:60px; width:auto}
+.term{ color:#e8fff3; background:#070a0c; border:1px solid #11161d; border-radius:10px; padding:14px 16px; font-size:22px; min-height:540px; max-height:75vh; overflow:auto; white-space:pre-wrap; }
 .term .role{color:#a0c4ff}
-.term .art{ color:#9fe7bf; display:block; margin:10px 0; white-space:pre; }
+.term .art{ color:#9fe7bf; display:block; margin:12px 0; white-space:pre; font-size:22px; line-height:1.05;}
 .small{font-size:13px; color:#8a98a7}
