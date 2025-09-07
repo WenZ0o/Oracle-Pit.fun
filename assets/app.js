@@ -12,14 +12,6 @@
     termEl.appendChild(p);
   }
   function sample(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-  function pickN(arr, n){
-    const a = arr.slice(); const out=[];
-    while(out.length<n && a.length){
-      const i = Math.floor(Math.random()*a.length);
-      out.push(a.splice(i,1)[0]);
-    }
-    return out;
-  }
   function sampleDistinct(arr, recent, windowSize){
     if(!arr || arr.length===0) return null;
     const candidates = arr.filter(x => !recent.includes(x));
@@ -29,44 +21,41 @@
     return pick;
   }
 
-  function frame(width=50, height=14){
-    const top = "█".repeat(width);
-    const mid = "█" + " ".repeat(width-2) + "█";
-    const arr=[top];
-    for(let i=0;i<height-2;i++) arr.push(mid);
-    arr.push(top);
-    return arr;
+  // Framed panel like your mock (50x14), 1–2 keywords, bullets
+  function panel(width=50, height=14){
+    const top = "┌" + "─".repeat(width-2) + "┐";
+    const bottom = "└" + "─".repeat(width-2) + "┘";
+    const empty = "│" + " ".repeat(width-2) + "│";
+    const lines = [top];
+    for(let i=0;i<height-2;i++){ lines.push(empty); }
+    lines.push(bottom);
+    return lines;
   }
-
-  function embedKeyword(lines, keyword, row){
-    const w = lines[0].length;
-    const start = Math.max(1, Math.floor((w - keyword.length)/2));
-    const line = lines[row];
-    lines[row] = line.slice(0,start) + keyword + line.slice(start+keyword.length);
+  function putText(line, txt, col){
+    // replace starting at col (no overflow)
+    if(col < 0) col = 0;
+    if(col > line.length-1) return line;
+    const before = line.slice(0, col);
+    const after = line.slice(col + Math.min(txt.length, line.length-col));
+    const fit = txt.slice(0, Math.max(0, line.length - col));
+    return before + fit + after;
   }
-
-  function sprinkleLightNoise(lines){
-    const h = lines.length, w=lines[0].length;
-    for(let i=2;i<h-2;i+=3){
-      const arr = lines[i].split("");
-      for(let c=2;c<w-2;c+=Math.floor(6+Math.random()*6)){
-        arr[c] = (Math.random()<0.5?"░":"▒");
-      }
-      lines[i] = arr.join("");
-    }
-  }
-
-  function makeGentleBlock(){
+  function makeMarketPanel(){
     const width = 50, height = 14;
-    let lines = frame(width, height);
-    const howMany = Math.random()<0.25 ? 2 : 1; // mostly 1, sometimes 2
-    const kws = pickN(KEYWORDS, howMany);
-    // primary on center row
-    embedKeyword(lines, kws[0], Math.floor(height/2));
-    // optional secondary lower
-    if(kws[1]) embedKeyword(lines, kws[1], Math.floor(height*0.68));
-    sprinkleLightNoise(lines);
-    return lines.join("\\n");
+    const lines = panel(width, height);
+    const title = sample(["MARKET FEED","MEME BOARD","TERMINAL NOTE"]);
+    // title
+    lines[1] = putText(lines[1], " "+title, 2);
+    // bullets (2–3)
+    const howMany = 2 + Math.floor(Math.random()*2);
+    const kws = KEYWORDS.slice().sort(()=>Math.random()-0.5);
+    for(let i=0;i<howMany;i++){
+      const kw = kws[i % kws.length];
+      const text = " > " + kw + " ...";
+      const row = 3 + i*3;
+      lines[row] = putText(lines[row], text, 2);
+    }
+    return lines.join("\n");
   }
 
   function renderInstant(termEl, slug){
@@ -76,16 +65,16 @@
     const transcript = [];
     data.intro.forEach(l => transcript.push(l));
 
-    const TOTAL = 220;
-    const ASCII_EVERY = 4;
-    const BLOCK_CHANCE = 0.5;
+    const TOTAL = 180;          // shorter than v18
+    const ASCII_EVERY = 6;      // less frequent panels
+    const PANEL_CHANCE = 0.6;   // when ascii slot hits, prefer our panel
 
     const recentAscii = [];
     const recentLines = [];
     for(let i=0;i<TOTAL;i++){
       if(i>0 && i % ASCII_EVERY === 0){
-        if(Math.random() < BLOCK_CHANCE){
-          transcript.push("ART::"+makeGentleBlock());
+        if(Math.random() < PANEL_CHANCE){
+          transcript.push("ART::"+makeMarketPanel());
         }else{
           const art = sampleDistinct(asciiPool, recentAscii, 8);
           transcript.push("ART::"+art);
@@ -111,14 +100,9 @@
     termEl.scrollTop = 0;
   }
 
-  function getSlugFromPath(){
-    const file = (location.pathname.split('/').pop()||"").toLowerCase();
-    return file.replace(".html","");
-  }
-
   window.addEventListener("DOMContentLoaded", () => {
     const term = document.getElementById("term");
-    const slug = document.body.getAttribute("data-room") || getSlugFromPath();
+    const slug = document.body.getAttribute("data-room");
     if(term){ renderInstant(term, slug); }
   });
 })();
